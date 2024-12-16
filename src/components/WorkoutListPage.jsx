@@ -46,17 +46,26 @@ const WorkoutListPage = () => {
         </select>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="space-y-4">
         {filteredWorkouts.map((workout) => (
           <div
             key={workout.id}
-            className="bg-white shadow-lg rounded-lg p-4 cursor-pointer hover:shadow-xl"
+            className="bg-white shadow-lg rounded-lg p-4 flex justify-between items-center cursor-pointer hover:shadow-xl"
             onClick={() => setSelectedWorkout(workout)}
           >
-            <h3 className="text-xl font-bold mb-2">{workout.name}</h3>
-            <p className="text-sm">Type: {workout.type}</p>
-            <p className="text-sm">Muscle Group: {workout.muscleGroup}</p>
-            <p className="text-sm">Reps: {workout.reps}</p>
+            {/* Left Side */}
+            <div>
+              <h3 className="text-lg font-bold">{workout.name}</h3>
+              <p className="text-sm text-gray-600">{workout.type}</p>
+            </div>
+
+            {/* Right Side */}
+            <div className="text-right">
+              <p className="text-sm">Muscle Group: {workout.muscleGroup}</p>
+              <p className="text-sm">
+                {workout.reps} Reps x {workout.sets} Sets
+              </p>
+            </div>
           </div>
         ))}
       </div>

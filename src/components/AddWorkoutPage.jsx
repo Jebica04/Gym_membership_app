@@ -7,10 +7,11 @@ const AddWorkoutPage = () => {
   const [type, setType] = useState("");
   const [muscleGroup, setMuscleGroup] = useState("");
   const [reps, setReps] = useState("");
+  const [sets, setSets] = useState("");
   const [videoLink, setVideoLink] = useState("");
 
   const handleAddWorkout = async () => {
-    if (!name || !type || !muscleGroup || !reps || !videoLink) {
+    if (!name || !type || !muscleGroup || !reps || !sets || !videoLink) {
       alert("Please fill all fields!");
       return;
     }
@@ -21,6 +22,7 @@ const AddWorkoutPage = () => {
         type,
         muscleGroup,
         reps: parseInt(reps),
+        sets: parseInt(sets),
         videoLink,
       });
       alert("Workout added successfully!");
@@ -28,6 +30,7 @@ const AddWorkoutPage = () => {
       setType("");
       setMuscleGroup("");
       setReps("");
+      setSets("");
       setVideoLink("");
     } catch (error) {
       alert("Error adding workout: " + error.message);
@@ -65,6 +68,13 @@ const AddWorkoutPage = () => {
             placeholder="Number of Reps"
             value={reps}
             onChange={(e) => setReps(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+          />
+          <input
+            type="number"
+            placeholder="Number of Sets"
+            value={sets}
+            onChange={(e) => setSets(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
           <input
