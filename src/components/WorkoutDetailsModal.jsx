@@ -1,7 +1,6 @@
 import React from "react";
 
 const WorkoutDetailsModal = ({ workout, onClose }) => {
-  // Extract the YouTube video ID from the URL
   const videoId = new URL(workout.videoLink).searchParams.get("v");
 
   return (
@@ -16,7 +15,7 @@ const WorkoutDetailsModal = ({ workout, onClose }) => {
         <h2 className="text-2xl font-bold mb-4">{workout.name}</h2>
         <p><strong>Type:</strong> {workout.type}</p>
         <p><strong>Muscle Group:</strong> {workout.muscleGroup}</p>
-        <p><strong>Reps:</strong> {workout.reps}</p>
+        <p><strong>Reps x Sets:</strong> {workout.reps} x {workout.sets}</p>
         <div className="mt-4">
           <iframe
             src={`https://www.youtube.com/embed/${videoId}`}
