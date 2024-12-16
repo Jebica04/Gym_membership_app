@@ -4,11 +4,6 @@ import { Link } from "react-router-dom";
 const LandingPage = () => {
   return (
     <div className="bg-gradient-to-r from-blue-500 to-indigo-600 min-h-screen text-white">
-      <header className="container mx-auto p-6">
-        <nav className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold">Poli Gym</h1>
-        </nav>
-      </header>
 
       <main className="container mx-auto text-center py-20">
         <h1 className="text-5xl font-extrabold mb-6">
