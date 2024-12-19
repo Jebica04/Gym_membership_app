@@ -35,7 +35,7 @@ const WorkoutListPage = () => {
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         >
-          <option value="">All Muscle Groups</option>
+          <option value="">Toate Grupele De Muschi</option>
           {Array.from(new Set(workouts.map((w) => w.muscleGroup))).map(
             (group) => (
               <option key={group} value={group}>
@@ -46,26 +46,18 @@ const WorkoutListPage = () => {
         </select>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {filteredWorkouts.map((workout) => (
           <div
             key={workout.id}
-            className="bg-white shadow-lg rounded-lg p-4 flex justify-between items-center cursor-pointer hover:shadow-xl"
+            className="bg-white shadow-lg rounded-lg p-4 cursor-pointer hover:shadow-xl"
             onClick={() => setSelectedWorkout(workout)}
           >
-            {/* Left Side */}
-            <div>
-              <h3 className="text-lg font-bold">{workout.name}</h3>
-              <p className="text-sm text-gray-600">{workout.type}</p>
-            </div>
-
-            {/* Right Side */}
-            <div className="text-right">
-              <p className="text-sm">Muscle Group: {workout.muscleGroup}</p>
-              <p className="text-sm">
-                {workout.reps} Reps x {workout.sets} Sets
-              </p>
-            </div>
+            <h3 className="text-xl font-bold mb-2">{workout.name}</h3>
+            <p className="text-sm">Tip: {workout.type}</p>
+            <p className="text-sm">Grupa Muschi: {workout.muscleGroup}</p>
+            <p className="text-sm">Seturi: {workout.sets}</p>
+            <p className="text-sm">Repetari x Seturi: <strong>{workout.reps} x {workout.sets}</strong></p>
           </div>
         ))}
       </div>
