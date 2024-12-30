@@ -11,18 +11,18 @@ const Navbar = () => {
       <h1 className="text-lg font-bold">FitLife Gym</h1>
       <div>
         <Link to="/" className="mr-4 hover:underline">
-          Acasa
+          Home
         </Link>
         <Link to="/workouts" className="mr-4 hover:underline">
-          Workout-uri
+          Workouts
         </Link>
         <Link to="/add-workout" className="mr-4 hover:underline">
-          Adauga Workout
+          Add Workout
         </Link>
         {user ? (
           <>
             <Link to="/account" className="mr-4 hover:underline">
-              Contul Meu
+              My Account
             </Link>
             <button
               onClick={() => auth.signOut()}

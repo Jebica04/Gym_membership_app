@@ -13,9 +13,9 @@ const WorkoutDetailsModal = ({ workout, onClose }) => {
           ✕
         </button>
         <h2 className="text-2xl font-bold mb-4">{workout.name}</h2>
-        <p><strong>Tip:</strong> {workout.type}</p>
-        <p><strong>Groupa Muschi:</strong> {workout.muscleGroup}</p>
-        <p><strong>Repetari x Seturi:</strong> {workout.reps} x {workout.sets}</p>
+        <p><strong>Type:</strong> {workout.type}</p>
+        <p><strong>Muscle Group:</strong> {workout.muscleGroup}</p>
+        <p><strong>Reps x Sets:</strong> {workout.reps} x {workout.sets}</p>
         <div className="mt-4">
           <iframe
             src={`https://www.youtube.com/embed/${videoId}`}
