@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { auth, googleProvider } from "../firebase";
+import { auth, googleProvider, db } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
@@ -10,9 +11,25 @@ const SignupPage = () => {
 
   // Email-based Sign-Up
   const handleSignup = async () => {
+    if (!email || !password) {
+      alert("Please fill all fields!");
+      return;
+    }
+  
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/account"); // Redirect after successful sign-up
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+  
+      // Add user information to Firestore
+      const userId = user.email; // Use email as ID
+      await setDoc(doc(db, "users", userId), {
+        name: "",
+        email: user.email,
+        age: null,
+        gender: "",
+      });
+  
+      navigate("/account"); // Redirect to account page
     } catch (error) {
       alert(error.message);
     }
@@ -21,10 +38,24 @@ const SignupPage = () => {
   // Google Sign-Up
   const handleGoogleSignup = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      navigate("/account"); // Redirect after Google sign-up
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+  
+      // Check if user exists in Firestore, if not, create a new document
+      const userDoc = doc(db, "users", user.email);
+      await setDoc(userDoc, {
+        name: "",
+        email: user.email,
+        age: null,
+        gender: "",
+        membership: "None",
+        balance: 0,
+      }, { merge: true });
+  
+      alert("Signed up cu succes cu Google!");
+      navigate("/account"); // Redirect to account page
     } catch (error) {
-      alert(error.message);
+      alert("Eroare la signing up cu Google: " + error.message);
     }
   };
 
@@ -42,7 +73,7 @@ const SignupPage = () => {
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Parola"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -51,13 +82,13 @@ const SignupPage = () => {
             onClick={handleSignup}
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
           >
-            Sign Up with Email
+            Sign Up cu Email
           </button>
           <button
             onClick={handleGoogleSignup}
             className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700"
           >
-            Sign Up with Google
+            Sign Up cu Google
           </button>
         </div>
         <p className="text-center mt-4 text-sm">
