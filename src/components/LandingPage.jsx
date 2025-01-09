@@ -13,7 +13,7 @@ const LandingPage = () => {
           to="/workouts"
           className="bg-white text-blue-600 py-3 px-6 rounded-lg shadow-lg hover:bg-gray-100"
         >
-          Explore Workouts
+          Descopera Workout-urile
         </Link>
         <Link
           to="/login"

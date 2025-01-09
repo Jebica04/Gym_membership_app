@@ -40,7 +40,7 @@ const LoginPage = () => {
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Parola"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -49,17 +49,17 @@ const LoginPage = () => {
             onClick={handleEmailLogin}
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
           >
-            Login with Email
+            Login cu Email
           </button>
           <button
             onClick={handleGoogleLogin}
             className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700"
           >
-            Login with Google
+            Login cu Google
           </button>
         </div>
         <p className="text-center mt-4 text-sm">
-          Don't have an account?{" "}
+          Nu ai cont?{" "}
           <a
             href="/signup"
             className="text-blue-600 hover:underline"
